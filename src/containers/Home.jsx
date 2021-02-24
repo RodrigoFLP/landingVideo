@@ -2,20 +2,25 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Search from "../components/Search";
 import Carousel from "../components/Carousel";
+import Header from "../components/Header";
+
 import Categories from "../components/Categories";
 import CarouselItem from "../components/CarouselItem";
 import "../assets/styles/App.scss";
 import useInitialState from "../hooks/useInitialState";
 
-
-const Home = ({myList, trends, originals}) => {
+const Home = ({ myList, trends, originals }) => {
   return (
     <>
-      <Search />
+      <Header />
+
+      <Search isHome/>
       {myList.length > 0 && (
         <Categories title="Mi lista">
           <Carousel>
-            {myList.map(item => <CarouselItem key={item.id} {...item} />)}
+            {myList.map((item) => (
+              <CarouselItem key={item.id} {...item} isList />
+            ))}
           </Carousel>
         </Categories>
       )}
